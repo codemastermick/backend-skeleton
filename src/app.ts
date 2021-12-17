@@ -3,6 +3,7 @@ dotenv.config();
 import express from "express";
 import authSample from "./auth/auth";
 import crudSample from "./crud/crud";
+import Logger from "@lib/Logger";
 
 export default class Server {
     app: express.Express;
@@ -25,8 +26,7 @@ export default class Server {
 
     start() {
         this.app.listen(this.port, () => {
-            // eslint-disable-next-line no-console
-            console.log(`Server started at http://localhost:${this.port} -- Press ctrl+c to stop`);
+            Logger.info(`Server started at http://localhost:${this.port} -- Press ctrl+c to stop`);
         });
     }
 }
