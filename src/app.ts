@@ -15,7 +15,7 @@ export default class Server {
         this.port = Number.parseInt(process.env.PORT, 10) || 3000;
         this.router = express.Router();
 
-        this.app.get("/", (req, res) => {
+        this.app.get("/", (req: express.Request, res: express.Response) => {
             res.contentType("text");
             res.send('Welcome to the sample backend server');
         });
