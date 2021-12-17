@@ -24,23 +24,32 @@ const colors = {
     debug: 'white',
 }
 
-winston.addColors(colors)
-
 const format = winston.format.combine(
     winston.format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss:ms' }),
-    winston.format.colorize({ all: true }),
+    winston.format.colorize({ all: true, colors }),
+    winston.format.printf(
+        (info) => `${info.timestamp} ${info.level}: ${info.message}`,
+    ),
+)
+
+const fileFormat = winston.format.combine(
+    winston.format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss:ms' }),
     winston.format.printf(
         (info) => `${info.timestamp} ${info.level}: ${info.message}`,
     ),
 )
 
 const transports = [
-    new winston.transports.Console(),
+    new winston.transports.Console({ format }),
     new winston.transports.File({
         filename: 'logs/error.log',
         level: 'error',
+        format: fileFormat
     }),
-    new winston.transports.File({ filename: 'logs/all.log' }),
+    new winston.transports.File({
+        filename: 'logs/all.log',
+        format: fileFormat
+    }),
 ]
 
 const Logger = winston.createLogger({
@@ -48,10 +57,9 @@ const Logger = winston.createLogger({
     levels,
     format: combine(
         label({ label: "BACKEND-SKELETON", message: true }),
-        timestamp(),
-        format
+        timestamp()
     ),
-    transports,
+    transports
 })
 
 export default Logger
