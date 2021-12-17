@@ -2,20 +2,20 @@ import dotenv from "dotenv";
 dotenv.config();
 import express from "express";
 
-const authRouter = () => {
+const authSample = () => {
     const router = express.Router();
 
-    router.route("/register").get((req, res) => {
+    router.route("/register").post((_req: express.Request, res: express.Response) => {
         res.contentType("application/json");
         res.send({ 'message': 'Registration success!' });
     });
 
-    router.route("/login").get((req, res) => {
+    router.route("/login").get((_req: express.Request, res: express.Response) => {
         res.contentType("application/json");
         res.send({ 'message': 'Logged In!' });
     });
 
-    router.route("/logout").get((req, res) => {
+    router.route("/logout").get((_req: express.Request, res: express.Response) => {
         res.contentType("application/json");
         res.send({ 'message': 'Logged Out!' });
     });
@@ -23,4 +23,4 @@ const authRouter = () => {
     return router;
 }
 
-export default authRouter;
+export default authSample;
