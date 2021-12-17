@@ -44,6 +44,7 @@
     "typescript": "^4.5.4"
   },
   "_moduleAliases": {
-    "@lib": "dist/lib"
+    "@lib": "dist/lib",
+    "@middleware": "dist/middleware"
   }
 }

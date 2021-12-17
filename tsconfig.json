@@ -11,6 +11,9 @@
         "paths": {
             "@lib/*": [
                 "lib/*"
+            ],
+            "@middleware/*": [
+                "middleware/*"
             ]
         }
     },
