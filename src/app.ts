@@ -4,6 +4,7 @@ import express from "express";
 import authSample from "./auth/auth";
 import crudSample from "./crud/crud";
 import Logger from "@lib/Logger";
+import morganMiddleware from "@middleware/morgan";
 
 export default class Server {
     app: express.Express;
@@ -14,6 +15,7 @@ export default class Server {
         this.app = express();
         this.port = Number.parseInt(process.env.PORT, 10) || 3000;
         this.router = express.Router();
+        this.app.use(morganMiddleware);
 
         this.app.get("/", (req: express.Request, res: express.Response) => {
             res.contentType("text");
