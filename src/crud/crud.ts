@@ -2,25 +2,25 @@ import dotenv from "dotenv";
 dotenv.config();
 import express from "express";
 
-const crudRouter = () => {
+const crudSample = () => {
     const router = express.Router();
 
-    router.route("/create").get((req, res) => {
+    router.route("/item").post((_req: express.Request, res: express.Response) => {
         res.contentType("application/json");
         res.send({ 'message': 'Create success!' });
     });
 
-    router.route("/read").get((req, res) => {
+    router.route("/item").get((_req: express.Request, res: express.Response) => {
         res.contentType("application/json");
         res.send({ 'message': 'Read success!' });
     });
 
-    router.route("/update").get((req, res) => {
+    router.route("/item").put((_req: express.Request, res: express.Response) => {
         res.contentType("application/json");
         res.send({ 'message': 'Update success!' });
     });
 
-    router.route("/delete").get((req, res) => {
+    router.route("/item").delete((_req: express.Request, res: express.Response) => {
         res.contentType("application/json");
         res.send({ 'message': 'Delete success!' });
     });
@@ -28,4 +28,4 @@ const crudRouter = () => {
     return router;
 }
 
-export default crudRouter;
+export default crudSample;
