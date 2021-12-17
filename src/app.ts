@@ -16,8 +16,8 @@ export default class Server {
         this.router = express.Router();
 
         this.app.get("/", (req, res) => {
-            res.contentType("json");
-            res.send({ 'message': 'Welcome to the sample backend server' });
+            res.contentType("text");
+            res.send('Welcome to the sample backend server');
         });
 
         this.router.use("/auth", authSample());
