@@ -10,11 +10,12 @@ export default class Server {
     app: express.Express;
     port: number;
     router: express.Router;
-
+    logger: Logger;
     constructor() {
         this.app = express();
         this.port = Number.parseInt(process.env.PORT, 10) || 3000;
         this.router = express.Router();
+        this.logger = new Logger("BACKEND-SKELETON");
         this.app.use(morganMiddleware);
 
         this.app.get("/", (req: express.Request, res: express.Response) => {
@@ -28,7 +29,7 @@ export default class Server {
 
     start() {
         this.app.listen(this.port, () => {
-            Logger.info(`Server started at http://localhost:${this.port} -- Press ctrl+c to stop`);
+            this.logger.info(`Server started at http://localhost:${this.port} -- Press ctrl+c to stop`);
         });
     }
 }

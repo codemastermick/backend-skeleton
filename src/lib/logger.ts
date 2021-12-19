@@ -52,14 +52,50 @@ const transports = [
     }),
 ]
 
-const Logger = winston.createLogger({
-    level: level(),
-    levels,
-    format: combine(
-        label({ label: "BACKEND-SKELETON", message: true }),
-        timestamp()
-    ),
-    transports
-})
+class Logger {
+    log: winston.Logger;
+    constructor(appname: string) {
+        this.log = winston.createLogger({
+            level: level(),
+            levels,
+            format: combine(
+                label({ label: appname, message: true }),
+                timestamp()
+            ),
+            transports
+        })
+    }
+
+    error(message: string) {
+        this.log.error(message);
+    }
+
+    warn(message: string) {
+        this.log.warn(message);
+    }
+
+    info(message: string) {
+        this.log.info(message);
+    }
+
+    http(message: string) {
+        this.log.http(message);
+    }
+
+    debug(message: string) {
+        this.log.debug(message);
+    }
+
+}
+
+// const MyLogger = winston.createLogger({
+//     level: level(),
+//     levels,
+//     format: combine(
+//         label({ label: "BACKEND-SKELETON", message: true }),
+//         timestamp()
+//     ),
+//     transports
+// })
 
 export default Logger
