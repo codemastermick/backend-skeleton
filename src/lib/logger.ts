@@ -52,17 +52,35 @@ const transports = [
     }),
 ]
 
-class Logger {
-    log: winston.Logger;
-    constructor(appname: string) {
+const requestTransport = [
+    new winston.transports.File({
+        filename: 'logs/access.log',
+        format: fileFormat
+    })
+]
+
+export default class Logger {
+    private log: winston.Logger;
+    private requestLogger: winston.Logger;
+
+    constructor(appName: string) {
         this.log = winston.createLogger({
             level: level(),
             levels,
             format: combine(
-                label({ label: appname, message: true }),
+                label({ label: appName, message: true }),
                 timestamp()
             ),
             transports
+        })
+        this.requestLogger = winston.createLogger({
+            level: "http",
+            levels: { http: 0 },
+            format: combine(
+                label({ label: appName, message: true }),
+                timestamp()
+            ),
+            transports: requestTransport
         })
     }
 
@@ -80,22 +98,10 @@ class Logger {
 
     http(message: string) {
         this.log.http(message);
+        this.requestLogger.http(message);
     }
 
     debug(message: string) {
         this.log.debug(message);
     }
-
 }
-
-// const MyLogger = winston.createLogger({
-//     level: level(),
-//     levels,
-//     format: combine(
-//         label({ label: "BACKEND-SKELETON", message: true }),
-//         timestamp()
-//     ),
-//     transports
-// })
-
-export default Logger
