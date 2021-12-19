@@ -25,6 +25,7 @@ export default class Server {
 
         this.router.use("/auth", authSample());
         this.router.use("/crud", crudSample());
+        this.app.use(this.router);
     }
 
     start() {
