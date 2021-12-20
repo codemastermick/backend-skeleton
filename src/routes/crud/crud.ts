@@ -1,4 +1,4 @@
-import { CommonRoutesConfig } from '../../common/common.routes.config';
+import { CommonRoutesConfig } from '@lib/common.routes.config';
 import express from 'express';
 
 export default class CrudRoutes extends CommonRoutesConfig {
