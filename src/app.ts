@@ -6,6 +6,7 @@ import morganMiddleware from "@middleware/morgan";
 import { CommonRoutesConfig } from "@lib/common.routes.config";
 import CrudRoutes from "./routes/crud/crud";
 import AuthRoutes from "@lib/auth/auth";
+import errorHandler from "@middleware/ErrorHandler";
 export default class Server {
     app: express.Express;
     port: number;
@@ -26,14 +27,16 @@ export default class Server {
         this.app.use(morganMiddleware);
 
         this.routes = [];
-        this.app.get("/", (req: express.Request, res: express.Response) => {
+        this.app.get("/", (_req: express.Request, res: express.Response) => {
             res.contentType("text");
             res.send('Welcome to the sample backend server');
         });
+
         this.routes.push(new CrudRoutes(this.app));
         this.routes.push(new AuthRoutes(this.app));
 
         this.app.use(this.router);
+        this.app.use(errorHandler);
     }
 
     start() {
@@ -41,7 +44,7 @@ export default class Server {
             this.routes.forEach((route: CommonRoutesConfig) => {
                 this.logger.debug(`Routes configured for ${route.getName()}`);
             });
-            this.logger.info(`Server started at http://localhost:${this.port} -- Press ctrl+c to stop`);
+            this.logger.debug(`Server started at http://localhost:${this.port} -- Press ctrl+c to stop`);
         });
     }
 
