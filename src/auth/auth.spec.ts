@@ -1,17 +1,17 @@
-
 import request from "supertest";
-import { Express } from 'express-serve-static-core'
-import authSample from "./auth";
 import express from "express";
+import AuthRoutes from "./auth";
 
-let server: Express;
+let server: express.Express;
+let router: express.Router;
 
 beforeAll(async () => {
     server = express();
-    server.use("/", authSample())
+    router = express.Router();
+    router.use("/", new AuthRoutes(server).configureRoutes())
 })
 
-describe('GET /register', () => {
+describe('POST /register', () => {
     it('should return 200', () => {
         return request(server).post("/register").then(res => {
             expect(res.statusCode).toBe(200)
@@ -31,21 +31,21 @@ describe('GET /register', () => {
     })
 })
 
-describe('GET /login', () => {
+describe('POST /login', () => {
     it('should return 200', () => {
-        return request(server).get("/login").then(res => {
+        return request(server).post("/login").then(res => {
             expect(res.statusCode).toBe(200)
         })
     })
 
     it('should return a json object', () => {
-        return request(server).get("/login").then(res => {
+        return request(server).post("/login").then(res => {
             expect(res.type).toBe('application/json')
         })
     })
 
     it('should return the correct response', () => {
-        return request(server).get("/login").then(res => {
+        return request(server).post("/login").then(res => {
             expect(res.body.message).toBe("Logged In!")
         })
     })

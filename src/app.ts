@@ -1,11 +1,11 @@
 import dotenv from "dotenv";
 dotenv.config();
 import express from "express";
-// import authSample from "./auth/auth";
 import Logger from "@lib/Logger";
 import morganMiddleware from "@middleware/morgan";
 import { CommonRoutesConfig } from "common/common.routes.config";
 import CrudRoutes from "./routes/crud/crud";
+import AuthRoutes from "./auth/auth";
 
 export default class Server {
     app: express.Express;
@@ -26,6 +26,7 @@ export default class Server {
             res.send('Welcome to the sample backend server');
         });
         this.routes.push(new CrudRoutes(this.app));
+        this.routes.push(new AuthRoutes(this.app));
         // this.router.use("/auth", authSample());
         // this.router.use("/crud", crudSample());
         this.app.use(this.router);
