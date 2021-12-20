@@ -14,18 +14,25 @@ export default class Server {
     routes: CommonRoutesConfig[];
     constructor() {
         this.app = express();
-        this.port = Number.parseInt(process.env.PORT, 10) || 3000;
-        this.router = express.Router();
         this.logger = new Logger("BACKEND-SKELETON");
+        const port = Number.parseInt(process.env.PORT, 10);
+        if (this.validatePortNumber(port)) {
+            this.port = port;
+        } else {
+            this.logger.debug(`Port [${port}] is not usable! Please set the port to between 1001 and 65535. Continuing on port 3000`);
+            this.port = 3000;
+        }
+        this.router = express.Router();
         this.app.use(morganMiddleware);
-        this.routes = [];
 
+        this.routes = [];
         this.app.get("/", (req: express.Request, res: express.Response) => {
             res.contentType("text");
             res.send('Welcome to the sample backend server');
         });
         this.routes.push(new CrudRoutes(this.app));
         this.routes.push(new AuthRoutes(this.app));
+
         this.app.use(this.router);
     }
 
@@ -36,5 +43,9 @@ export default class Server {
             });
             this.logger.info(`Server started at http://localhost:${this.port} -- Press ctrl+c to stop`);
         });
+    }
+
+    private validatePortNumber(num: number): boolean {
+        return num > 1000 && num <= 65535;
     }
 }
