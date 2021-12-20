@@ -3,10 +3,9 @@ dotenv.config();
 import express from "express";
 import Logger from "@lib/Logger";
 import morganMiddleware from "@middleware/morgan";
-import { CommonRoutesConfig } from "common/common.routes.config";
+import { CommonRoutesConfig } from "@lib/common.routes.config";
 import CrudRoutes from "./routes/crud/crud";
-import AuthRoutes from "./auth/auth";
-
+import AuthRoutes from "@lib/auth/auth";
 export default class Server {
     app: express.Express;
     port: number;
