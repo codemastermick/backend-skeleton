@@ -26,8 +26,6 @@ export default class Server {
         });
         this.routes.push(new CrudRoutes(this.app));
         this.routes.push(new AuthRoutes(this.app));
-        // this.router.use("/auth", authSample());
-        // this.router.use("/crud", crudSample());
         this.app.use(this.router);
     }
 
