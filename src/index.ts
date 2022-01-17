@@ -1,3 +1,5 @@
+import dotenv from "dotenv";
+dotenv.config();
 import 'module-alias/register';
 import Logger from '@lib/Logger';
 import Server from "./app";
