@@ -12,7 +12,7 @@ export default class Server {
     logger: Logger;
     routes: CommonRoutesConfig[];
     constructor() {
-        this.logger = new Logger(process.env.APP_NAME.replace(/ /g, '-'));
+        this.logger = new Logger(process.env.APP_NAME.toUpperCase().replace(/ /g, '-'));
         this.app = express();
         this.setPort();
         this.router = express.Router();
