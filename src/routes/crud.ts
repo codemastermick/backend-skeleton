@@ -6,7 +6,7 @@ export default class CrudRoutes extends CommonRoutesConfig {
         super(app, 'CrudRoutes');
     }
     configureRoutes(): express.Application {
-        this.app.route("/item").all((_req: express.Request, res: express.Response, next: express.NextFunction) => {
+        this.app.route("/crud").all((_req: express.Request, res: express.Response, next: express.NextFunction) => {
             // add logic here to run before running http verbs, like authentication
             next();
         }).post((_req: express.Request, res: express.Response) => {

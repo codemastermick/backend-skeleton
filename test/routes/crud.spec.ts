@@ -1,5 +1,5 @@
 import request from "supertest";
-import CrudRoutes from "../../src/routes/crud/crud";
+import CrudRoutes from "../../src/routes/crud";
 import express from "express";
 
 let server: express.Express;

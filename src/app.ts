@@ -2,8 +2,8 @@ import express from "express";
 import Logger from "@lib/Logger";
 import morganMiddleware from "@middleware/morgan";
 import { CommonRoutesConfig } from "@lib/common.routes.config";
-import CrudRoutes from "./routes/crud/crud";
-import AuthRoutes from "./routes/auth/auth";
+import CrudRoutes from "./routes/crud";
+import AuthRoutes from "./routes/auth";
 import errorHandler from "@middleware/ErrorHandler";
 export default class Server {
     app: express.Express;
