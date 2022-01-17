@@ -12,7 +12,7 @@ export default class Server {
     logger: Logger;
     routes: CommonRoutesConfig[];
     constructor() {
-        this.logger = new Logger("BACKEND-SKELETON");
+        this.logger = new Logger(process.env.APP_NAME.replace(/ /g, '-'));
         this.app = express();
         this.setPort();
         this.router = express.Router();
@@ -21,7 +21,7 @@ export default class Server {
         this.routes = [];
         this.app.get("/", (_req: express.Request, res: express.Response) => {
             res.contentType("text");
-            res.send('Welcome to the sample backend server');
+            res.send(`Welcome to ${process.env.APP_NAME}`);
         });
 
         this.routes.push(new CrudRoutes(this.app));
@@ -45,7 +45,7 @@ export default class Server {
     }
 
     private setPort() {
-        const port = Number.parseInt(process.env.PORT, 10);
+        const port = Number.parseInt(process.env.SERVER_PORT, 10);
         if (this.validatePortNumber(port)) {
             this.port = port;
         } else {
