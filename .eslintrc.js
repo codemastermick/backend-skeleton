@@ -65,6 +65,8 @@ module.exports = {
                 }
             }
         ],
+        '@typescript-eslint/no-unsafe-assignment': 'warn',
+        '@typescript-eslint/no-unsafe-member-access': 'warn',
         '@typescript-eslint/no-unsafe-argument': 'off',
         '@typescript-eslint/no-unsafe-call': 'off',
         "@typescript-eslint/consistent-type-assertions": "error",
