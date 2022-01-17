@@ -45,6 +45,7 @@
   },
   "_moduleAliases": {
     "@lib": "dist/lib",
-    "@middleware": "dist/middleware"
+    "@middleware": "dist/middleware",
+    "@routes": "dist/routes"
   }
 }
