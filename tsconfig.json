@@ -9,6 +9,9 @@
         "outDir": "dist",
         "baseUrl": "./src",
         "paths": {
+            "@config/*": [
+                "configs/*"
+            ],
             "@lib/*": [
                 "lib/*"
             ],
