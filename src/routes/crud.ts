@@ -1,13 +1,26 @@
+import { StatusCodes } from "http-status-codes";
+import CommonDatabaseService from '@lib/common.database.service';
 import CommonRoutesConfig from '@lib/common.routes.config';
+import MongooseService from '@lib/mongoose';
+import { databaseEnabled } from '@config/database.config';
 import express from 'express';
+import DatabaseException from '../exceptions/Database';
 
 export default class CrudRoutes extends CommonRoutesConfig {
+    dbService: CommonDatabaseService;
+
     constructor(app: express.Application) {
         super(app, 'CrudRoutes');
+        if (databaseEnabled) {
+            this.dbService = new MongooseService();
+        }
     }
     configureRoutes(): express.Application {
         this.app.route("/crud").all((_req: express.Request, res: express.Response, next: express.NextFunction) => {
             // add logic here to run before running http verbs, like authentication
+            if (!databaseEnabled) {
+                throw new DatabaseException(StatusCodes.NOT_IMPLEMENTED, "Database is not enabled for this project");
+            }
             next();
         }).post((_req: express.Request, res: express.Response) => {
             res.contentType("application/json");
