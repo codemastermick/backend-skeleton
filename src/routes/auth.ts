@@ -22,6 +22,11 @@ export default class AuthRoutes extends CommonRoutesConfig {
             res.contentType("application/json");
             res.send({ 'message': 'Logged Out!' });
         });
+
+        this.app.route("/forgot-password").get((_req: express.Request, res: express.Response) => {
+            res.contentType("application/json");
+            res.send({ 'message': 'Password reset emails not implemented yet!' });
+        });
         return this.app;
     }
 }
