@@ -1,4 +1,4 @@
-import { CommonRoutesConfig } from "@lib/common.routes.config";
+import CommonRoutesConfig from "@lib/common.routes.config";
 import dotenv from "dotenv";
 dotenv.config();
 import express from "express";
