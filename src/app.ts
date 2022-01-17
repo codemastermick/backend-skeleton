@@ -24,9 +24,7 @@ export default class Server {
             res.send(`Welcome to ${process.env.APP_NAME}`);
         });
 
-        this.routes.push(new CrudRoutes(this.app));
-        this.routes.push(new AuthRoutes(this.app));
-
+        this.configureRoutes();
         this.app.use(this.router);
         this.app.use(errorHandler);
     }
@@ -38,6 +36,11 @@ export default class Server {
             });
             this.logger.debug(`Server started at http://localhost:${this.port} -- Press ctrl+c to stop`);
         });
+    }
+
+    private configureRoutes() {
+        this.routes.push(new CrudRoutes(this.app));
+        this.routes.push(new AuthRoutes(this.app));
     }
 
     private validatePortNumber(num: number): boolean {
