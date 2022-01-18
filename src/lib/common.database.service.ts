@@ -12,5 +12,5 @@ export default abstract class CommonDatabaseService {
 
     abstract connectToDatabase(): void;
     abstract disconnectFromDatabase(): void;
-    abstract create<T>(name: string, item: T): void;
+    abstract create<T>(name: string, item: T, schema: any): void;
 }
