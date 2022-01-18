@@ -5,7 +5,7 @@ import MongooseService from '@lib/mongoose';
 import { databaseEnabled } from '@config/database.config';
 import express from 'express';
 import DatabaseException from '../exceptions/Database';
-import { User } from "models/user";
+import { User, userSchema } from "../models/user";
 
 export default class CrudRoutes extends CommonRoutesConfig {
     dbService: CommonDatabaseService;
@@ -24,7 +24,7 @@ export default class CrudRoutes extends CommonRoutesConfig {
             // add logic here to run before running http verbs, like authentication
             next();
         }).post((req: express.Request, res: express.Response) => {
-            this.dbService.create<User>("Users", req.body.object);
+            this.dbService.create<User>("Users", req.body.object, userSchema);
             res.contentType("application/json");
             res.send({ 'message': 'Create success!' });
         }).get((_req: express.Request, res: express.Response) => {
