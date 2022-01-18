@@ -11,81 +11,45 @@ beforeAll(async () => {
     router.use("/", new CrudRoutes(server).configureRoutes());
 })
 
-describe('POST /item', () => {
-    it('should return 200', () => {
-        return request(server).post("/item").then(res => {
-            expect(res.statusCode).toBe(200)
-        })
-    })
-
-    it('should return a json object', () => {
-        return request(server).post("/item").then(res => {
-            expect(res.type).toBe('application/json')
-        })
-    })
-
+describe('POST /crud', () => {
     it('should return the correct response', () => {
-        return request(server).post("/item").then(res => {
+        const payload = {
+            "uid": "test",
+            "displayName": "Test User"
+        }
+        return request(server).post("/crud").send(payload).then(res => {
+            expect(res.statusCode).toBe(200)
+            expect(res.type).toBe('application/json')
             expect(res.body.message).toBe("Create success!")
         })
     })
 })
 
-describe('GET /item', () => {
-    it('should return 200', () => {
-        return request(server).get("/item").then(res => {
-            expect(res.statusCode).toBe(200)
-        })
-    })
-
-    it('should return a json object', () => {
-        return request(server).get("/item").then(res => {
-            expect(res.type).toBe('application/json')
-        })
-    })
-
+describe('GET /crud', () => {
     it('should return the correct response', () => {
-        return request(server).get("/item").then(res => {
+        return request(server).get("/crud").then(res => {
+            expect(res.statusCode).toBe(200)
+            expect(res.type).toBe('application/json')
             expect(res.body.message).toBe("Read success!")
         })
     })
 })
 
-describe('PUT /item', () => {
-    it('should return 200', () => {
-        return request(server).put("/item").then(res => {
-            expect(res.statusCode).toBe(200)
-        })
-    })
-
-    it('should return a json object', () => {
-        return request(server).put("/item").then(res => {
-            expect(res.type).toBe('application/json')
-        })
-    })
-
+describe('PUT /crud', () => {
     it('should return the correct response', () => {
-        return request(server).put("/item").then(res => {
+        return request(server).put("/crud").then(res => {
+            expect(res.statusCode).toBe(200)
+            expect(res.type).toBe('application/json')
             expect(res.body.message).toBe("Update success!")
         })
     })
 })
 
-describe('DELETE /item', () => {
-    it('should return 200', () => {
-        return request(server).delete("/item").then(res => {
-            expect(res.statusCode).toBe(200)
-        })
-    })
-
-    it('should return a json object', () => {
-        return request(server).delete("/item").then(res => {
-            expect(res.type).toBe('application/json')
-        })
-    })
-
+describe('DELETE /crud', () => {
     it('should return the correct response', () => {
-        return request(server).delete("/item").then(res => {
+        return request(server).delete("/crud").then(res => {
+            expect(res.statusCode).toBe(200)
+            expect(res.type).toBe('application/json')
             expect(res.body.message).toBe("Delete success!")
         })
     })
