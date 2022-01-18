@@ -18,6 +18,7 @@ export default class Server {
         this.setPort();
         this.router = express.Router();
         this.app.use(morganMiddleware);
+        this.app.use(express.json());
 
         this.routes = [];
         this.app.get("/", (_req: express.Request, res: express.Response) => {
