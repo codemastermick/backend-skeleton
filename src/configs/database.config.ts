@@ -3,4 +3,4 @@ export enum SupportedDatabases {
     Mongoose
 }
 export const databaseEnabled = true;
-export const dbURL = "mongodb://localhost:27017"
+export const dbURL = "mongodb://localhost:27017/demoapp"
