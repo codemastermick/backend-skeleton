@@ -3,6 +3,7 @@
         "dbaeumer.vscode-eslint",
         "esbenp.prettier-vscode",
         "humao.rest-client",
-        "esbenp.prettier-vscode"
+        "esbenp.prettier-vscode",
+        "usernamehw.errorlens"
     ]
 }
