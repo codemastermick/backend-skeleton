@@ -1,4 +1,7 @@
+import { StatusCodes } from "http-status-codes";
+import { authenticationEnabled } from "@config/features.config";
 import CommonRoutesConfig from "@lib/common.routes.config";
+import ApplicationException from "../exceptions/Application";
 import express from "express";
 
 export default class AuthRoutes extends CommonRoutesConfig {
@@ -6,6 +9,10 @@ export default class AuthRoutes extends CommonRoutesConfig {
         super(app, 'AuthRoutes');
     }
     configureRoutes(): express.Application {
+        if (!authenticationEnabled) {
+            throw new ApplicationException(StatusCodes.NOT_IMPLEMENTED, "Authentication is not enabled for this project. Please see src/configs/features.config.ts to enable a database.");
+        }
+
         this.app.route("/register").post((_req: express.Request, res: express.Response) => {
             res.contentType("application/json");
             res.send({ 'message': 'Registration success!' });

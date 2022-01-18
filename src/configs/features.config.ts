@@ -1,4 +1,2 @@
-export class Features {
-    authentication = false;
-    database = false;
-}
+export const authenticationEnabled = false;
+export const databaseEnabled = false;
