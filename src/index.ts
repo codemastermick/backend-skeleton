@@ -7,5 +7,5 @@ import Server from "./app";
 const app = new Server();
 const logger = new Logger(process.env.APP_NAME.toUpperCase().replace(/ /g, '-'));
 
-logger.info("Starting server....");
+logger.debug("Starting server....");
 app.start();
