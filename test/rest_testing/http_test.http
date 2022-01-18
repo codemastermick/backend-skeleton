@@ -1,9 +1,7 @@
 POST http://localhost:8080/crud HTTP/1.1
 Content-Type: application/json
 
-{
-    "object":{
-      "uid":"demo",
-      "displayName":"Demo User"
-    }
+{    
+  "uid":"demo",
+  "displayName":"Demo User"
 }
