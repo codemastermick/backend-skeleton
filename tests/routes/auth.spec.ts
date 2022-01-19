@@ -1,6 +1,6 @@
 import request from "supertest";
 import express from "express";
-import AuthRoutes from "../../src/routes/auth";
+import AuthRoutes from "../../src/routes/auth.router";
 
 let server: express.Express;
 let router: express.Router;
