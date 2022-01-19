@@ -29,7 +29,8 @@ module.exports = {
     "plugins": [
         "eslint-plugin-jsdoc",
         "eslint-plugin-prefer-arrow",
-        "@typescript-eslint"
+        "@typescript-eslint",
+        "prettier"
     ],
     "ignorePatterns": ["*.spec.ts"],
     "rules": {
@@ -153,6 +154,7 @@ module.exports = {
         ],
         "prefer-arrow/prefer-arrow-functions": "error",
         "prefer-const": "error",
+        "prettier/prettier": "error",
         "radix": "error",
         "spaced-comment": [
             "error",
