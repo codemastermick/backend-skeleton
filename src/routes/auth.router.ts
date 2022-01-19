@@ -123,7 +123,7 @@ export default class AuthRouter extends CommonRoutesConfig {
           const accessToken = jwt.sign(
             { username: user.username as string, role: user.role as string },
             process.env.JWT_SIGNING_SECRET,
-            { expiresIn: '20m' }
+            { expiresIn: tokenExpiryLength }
           );
 
           res.json({
