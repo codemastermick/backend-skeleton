@@ -2,7 +2,7 @@ import express from "express";
 import Logger from "@lib/Logger";
 import CommonRoutesConfig from "@lib/common.routes.config";
 import morganMiddleware from "@middleware/morgan";
-import errorHandler from "@middleware/ErrorHandler";
+import errorHandler from "@middleware/error.middleware";
 import PingRoutes from "@routes/ping";
 import CrudRoutes from "@routes/crud";
 import AuthRoutes from "@routes/auth";
