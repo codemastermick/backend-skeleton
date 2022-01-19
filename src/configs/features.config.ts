@@ -1,2 +1,2 @@
-export const authenticationEnabled = false;
-export const databaseEnabled = false;
+export const authenticationEnabled = true;
+export const databaseEnabled = true;
