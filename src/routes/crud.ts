@@ -5,7 +5,7 @@ import MongoDBService from '@lib/mongodb';
 import { databaseEnabled } from '@config/features.config';
 import express from 'express';
 import DatabaseException from '../exceptions/DatabaseException';
-import { User } from "../models/user";
+import { User } from "../models/user.model";
 import { userSchema } from "../schemas/user.schema";
 
 export default class CrudRoutes extends CommonRoutesConfig {

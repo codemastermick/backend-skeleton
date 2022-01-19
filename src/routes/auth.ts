@@ -7,7 +7,7 @@ import ApplicationException from "../exceptions/ApplicationException";
 import express from "express";
 import CommonDatabaseService from '@lib/common.database.config';
 import MongoDbService from '@lib/mongodb';
-import { User } from 'models/user';
+import { User } from 'models/user.model';
 import { userSchema } from '../schemas/user.schema';
 import { tokenExpiryLength } from '@config/authentication.config';
 
