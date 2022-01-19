@@ -3,9 +3,9 @@ import Logger from "@lib/Logger";
 import CommonRoutesConfig from "@lib/common.routes.config";
 import morganMiddleware from "@middleware/morgan.middleware";
 import errorHandler from "@middleware/error.middleware";
-import PingRoutes from "@routes/ping";
-import CrudRoutes from "@routes/crud";
-import AuthRoutes from "@routes/auth";
+import PingRouter from "@routes/ping.router";
+import CrudRouter from "@routes/crud.router";
+import AuthRouter from "@routes/auth.router";
 export default class Server {
     app: express.Express;
     port: number;
@@ -41,9 +41,9 @@ export default class Server {
     }
 
     private configureRoutes() {
-        this.routes.push(new PingRoutes(this.app));
-        this.routes.push(new AuthRoutes(this.app));
-        this.routes.push(new CrudRoutes(this.app));
+        this.routes.push(new PingRouter(this.app));
+        this.routes.push(new AuthRouter(this.app));
+        this.routes.push(new CrudRouter(this.app));
     }
 
     private validatePortNumber(num: number): boolean {

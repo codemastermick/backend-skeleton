@@ -8,7 +8,7 @@ import DatabaseException from '../exceptions/DatabaseException';
 import { User } from "../models/user.model";
 import { userSchema } from "../schemas/user.schema";
 
-export default class CrudRoutes extends CommonRoutesConfig {
+export default class CrudRouter extends CommonRoutesConfig {
     dbService: CommonDatabaseService;
 
     constructor(app: express.Application) {

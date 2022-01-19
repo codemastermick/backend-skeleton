@@ -15,7 +15,7 @@ const createAccessToken = (user: User) => {
     return jwt.sign({ username: user.username, role: user.role }, process.env.JWT_SIGNING_SECRET, { expiresIn: tokenExpiryLength });
 }
 
-export default class AuthRoutes extends CommonRoutesConfig {
+export default class AuthRouter extends CommonRoutesConfig {
     dbService: CommonDatabaseService;
     refreshTokens: string[];
 

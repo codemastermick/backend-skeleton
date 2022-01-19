@@ -11,7 +11,7 @@ const sendPongResponse = (res: express.Response) => {
     res.send({ 'message': 'pong' });
 }
 
-export default class PingRoutes extends CommonRoutesConfig {
+export default class PingRouter extends CommonRoutesConfig {
     constructor(app: express.Application) {
         super(app, 'PingRoutes');
     }
