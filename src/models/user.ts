@@ -1,11 +1,7 @@
-import { Schema } from "mongoose";
-
 export interface User {
     uid: string;
     displayName: string;
+    password: string;
+    email: string;
+    avatarUrl: string;
 }
-
-export const userSchema = new Schema({
-    uid: { type: String, required: true },
-    displayName: { type: String, required: true }
-})
