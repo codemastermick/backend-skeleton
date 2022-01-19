@@ -2,10 +2,10 @@ import dotenv from "dotenv";
 dotenv.config();
 import 'module-alias/register';
 import Logger from '@lib/Logger';
-import Server from "./app";
+import Server from "./server";
 
-const app = new Server();
+const server = new Server();
 const logger = new Logger(process.env.APP_NAME.toUpperCase().replace(/ /g, '-'));
 
 logger.debug(`Starting ${process.env.APP_NAME}....`);
-app.start();
+server.start();
