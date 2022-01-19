@@ -1,7 +1,7 @@
 import { StatusCodes } from "http-status-codes";
 import CommonDatabaseService from '@lib/common.database.service';
 import CommonRoutesConfig from '@lib/common.routes.config';
-import MongooseService from '@lib/mongoose';
+import MongoDBService from '@lib/mongodb';
 import { databaseEnabled } from '@config/features.config';
 import express from 'express';
 import DatabaseException from '../exceptions/Database';
@@ -13,7 +13,7 @@ export default class CrudRoutes extends CommonRoutesConfig {
     constructor(app: express.Application) {
         super(app, 'CrudRoutes');
         if (databaseEnabled) {
-            this.dbService = new MongooseService();
+            this.dbService = new MongoDBService();
         }
     }
     configureRoutes(): express.Application {
@@ -24,7 +24,7 @@ export default class CrudRoutes extends CommonRoutesConfig {
             // add logic here to run before running http verbs, like authentication
             next();
         }).post(async (req: express.Request, res: express.Response) => {
-            await this.dbService.create<User>("Users", req.body, userSchema);
+            await this.dbService.create<User>(req.body, "Users", userSchema);
             res.contentType("application/json");
             res.send({ 'message': 'Create success!' });
         }).get((_req: express.Request, res: express.Response) => {
