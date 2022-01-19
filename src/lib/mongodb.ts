@@ -1,6 +1,6 @@
 import { connect, ConnectOptions, disconnect, Model, model, NativeError, Schema, UpdateWriteOpResult } from "mongoose";
 import Logger from "./Logger";
-import CommonDatabaseService from "./common.database.service";
+import CommonDatabaseService from "./common.database.config";
 import { dbURL } from "@config/database.config";
 
 export default class MongoDbService extends CommonDatabaseService {

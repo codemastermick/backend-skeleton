@@ -5,7 +5,7 @@ import { authenticationEnabled } from "@config/features.config";
 import CommonRoutesConfig from "@lib/common.routes.config";
 import ApplicationException from "../exceptions/ApplicationException";
 import express from "express";
-import CommonDatabaseService from '@lib/common.database.service';
+import CommonDatabaseService from '@lib/common.database.config';
 import MongoDbService from '@lib/mongodb';
 import { User } from 'models/user';
 import { userSchema } from '../schemas/user.schema';

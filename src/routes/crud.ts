@@ -1,5 +1,5 @@
 import { StatusCodes } from "http-status-codes";
-import CommonDatabaseService from '@lib/common.database.service';
+import CommonDatabaseService from '@lib/common.database.config';
 import CommonRoutesConfig from '@lib/common.routes.config';
 import MongoDBService from '@lib/mongodb';
 import { databaseEnabled } from '@config/features.config';
