@@ -33,7 +33,7 @@ export default class MongoDbService extends CommonDatabaseService {
     async readAll<T>(collection: string, schema: any): Promise<T[]> {
         await this.connectToDatabase();
         const dataModel: Model<T> = model<T>(collection, schema);
-        const results = await dataModel.find();
+        const results = await dataModel.find().clone();
         this.logger.debug("Retrieved collection of items from database");
         await this.disconnectFromDatabase();
         return results as T[];
@@ -42,7 +42,7 @@ export default class MongoDbService extends CommonDatabaseService {
     async readOne<T>(collection: string, uid: string, schema: any): Promise<T> {
         await this.connectToDatabase();
         const m: Model<T> = model<T>(collection, schema);
-        const results = await m.find({ uid });
+        const results = await m.find({ uid }).clone();
         this.logger.debug("Retrieved item from database");
         await this.disconnectFromDatabase();
         return results[0] as T;
@@ -59,7 +59,7 @@ export default class MongoDbService extends CommonDatabaseService {
                 this.logger.debug(`Updated ${uid}`);
             }
             await this.disconnectFromDatabase();
-        });
+        }).clone();
     }
 
     async delete<T>(item: T, collection: string, schema: any): Promise<void> {
@@ -69,7 +69,7 @@ export default class MongoDbService extends CommonDatabaseService {
             if (err) {
                 this.logger.error(err.message);
             }
-        });
+        }).clone();
         this.logger.debug("Deleted item");
         await this.disconnectFromDatabase();
     }
