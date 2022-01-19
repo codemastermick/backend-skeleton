@@ -1,3 +1,4 @@
+import jwt from 'jsonwebtoken';
 import { StatusCodes } from "http-status-codes";
 import { authenticationEnabled } from "@config/features.config";
 import CommonRoutesConfig from "@lib/common.routes.config";
@@ -9,14 +10,6 @@ export default class AuthRoutes extends CommonRoutesConfig {
         super(app, 'AuthRoutes');
     }
     configureRoutes(): express.Application {
-        this.app.route("/register").post((_req: express.Request, res: express.Response) => {
-            if (!authenticationEnabled) {
-                throw new ApplicationException(StatusCodes.NOT_IMPLEMENTED, "Authentication is not enabled for this project. Please see src/configs/features.config.ts to enable a database.");
-            }
-            res.contentType("application/json");
-            res.send({ 'message': 'Registration success!' });
-        });
-
         this.app.route("/login").post((_req: express.Request, res: express.Response) => {
             if (!authenticationEnabled) {
                 throw new ApplicationException(StatusCodes.NOT_IMPLEMENTED, "Authentication is not enabled for this project. Please see src/configs/features.config.ts to enable a database.");
