@@ -30,7 +30,8 @@ module.exports = {
         "eslint-plugin-jsdoc",
         "eslint-plugin-prefer-arrow",
         "@typescript-eslint",
-        "prettier"
+        "prettier",
+        "unused-imports"
     ],
     "ignorePatterns": ["*.spec.ts"],
     "rules": {
