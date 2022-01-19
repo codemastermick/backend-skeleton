@@ -1,5 +1,5 @@
 import request from "supertest";
-import CrudRoutes from "../../src/routes/crud";
+import CrudRoutes from "../../src/routes/crud.router";
 import express from "express";
 import { StatusCodes } from "http-status-codes";
 

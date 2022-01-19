@@ -1,6 +1,6 @@
 import request from "supertest";
 import express from "express";
-import PingRoutes from "../../src/routes/ping";
+import PingRoutes from "../../src/routes/ping.router";
 
 let server: express.Express;
 let router: express.Router;
