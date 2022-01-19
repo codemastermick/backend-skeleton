@@ -6,6 +6,7 @@ import errorHandler from '@middleware/error.middleware';
 import PingRouter from '@routes/ping.router';
 import CrudRouter from '@routes/crud.router';
 import AuthRouter from '@routes/auth.router';
+
 export default class Server {
   app: express.Express;
   port: number;

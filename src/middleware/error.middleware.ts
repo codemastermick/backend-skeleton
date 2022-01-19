@@ -1,8 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { NextFunction, Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 import HttpException from '../exceptions/HttpException';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const errorHandler = (
   error: HttpException,
   _request: Request,

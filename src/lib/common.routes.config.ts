@@ -1,5 +1,6 @@
 import Logger from '@lib/Logger';
 import express from 'express';
+
 export default abstract class CommonRoutesConfig {
   app: express.Application;
   name: string;
