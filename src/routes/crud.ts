@@ -4,7 +4,7 @@ import CommonRoutesConfig from '@lib/common.routes.config';
 import MongoDBService from '@lib/mongodb';
 import { databaseEnabled } from '@config/features.config';
 import express from 'express';
-import DatabaseException from '../exceptions/Database';
+import DatabaseException from '../exceptions/DatabaseException';
 import { User } from "../models/user";
 import { userSchema } from "../schemas/user.schema";
 

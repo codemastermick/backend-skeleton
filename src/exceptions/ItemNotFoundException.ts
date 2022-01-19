@@ -1,4 +1,4 @@
-import HttpException from "./Http";
+import HttpException from "./HttpException";
 
 export default class ItemNotFoundException extends HttpException {
     constructor(id: string) {

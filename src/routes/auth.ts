@@ -3,7 +3,7 @@ import jwt, { JwtPayload } from 'jsonwebtoken';
 import { StatusCodes } from "http-status-codes";
 import { authenticationEnabled } from "@config/features.config";
 import CommonRoutesConfig from "@lib/common.routes.config";
-import ApplicationException from "../exceptions/Application";
+import ApplicationException from "../exceptions/ApplicationException";
 import express from "express";
 import CommonDatabaseService from '@lib/common.database.service';
 import MongoDbService from '@lib/mongodb';

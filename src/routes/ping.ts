@@ -1,6 +1,6 @@
 import CommonRoutesConfig from '@lib/common.routes.config';
 import authenticateJWT from '@middleware/authentication.middleware';
-import UnauthorizedException from '../exceptions/Unauthorized';
+import UnauthorizedException from '../exceptions/UnauthorizedException';
 import express from 'express';
 import { StatusCodes } from 'http-status-codes';
 import { JwtPayload } from 'jsonwebtoken';

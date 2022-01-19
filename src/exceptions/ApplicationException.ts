@@ -1,4 +1,4 @@
-import HttpException from "./Http";
+import HttpException from "./HttpException";
 
 export default class ApplicationException extends HttpException {
     status: number;
