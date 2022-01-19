@@ -5,7 +5,8 @@ import MongoDBService from '@lib/mongodb';
 import { databaseEnabled } from '@config/features.config';
 import express from 'express';
 import DatabaseException from '../exceptions/Database';
-import { User, userSchema } from "../models/user";
+import { User } from "../models/user";
+import { userSchema } from "../schemas/user.schema";
 
 export default class CrudRoutes extends CommonRoutesConfig {
     dbService: CommonDatabaseService;
@@ -17,7 +18,7 @@ export default class CrudRoutes extends CommonRoutesConfig {
         }
     }
     configureRoutes(): express.Application {
-        this.app.route("/crud").all((_req: express.Request, res: express.Response, next: express.NextFunction) => {
+        this.app.route("/crud").all((_req: express.Request, _res: express.Response, next: express.NextFunction) => {
             if (!databaseEnabled) {
                 throw new DatabaseException(StatusCodes.NOT_IMPLEMENTED, "Database is not enabled for this project. Please see src/configs/features.config.ts to enable a database.");
             }
@@ -26,6 +27,7 @@ export default class CrudRoutes extends CommonRoutesConfig {
         }).post(async (req: express.Request, res: express.Response) => {
             await this.dbService.create<User>(req.body, "Users", userSchema);
             res.contentType("application/json");
+            res.status(StatusCodes.CREATED);
             res.send({ 'message': 'Create success!' });
         }).get((_req: express.Request, res: express.Response) => {
             res.contentType("application/json");
