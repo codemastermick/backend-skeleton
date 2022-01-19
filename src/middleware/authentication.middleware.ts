@@ -29,7 +29,7 @@ const authenticateJWT = (req: Request, res: Response, next: NextFunction) => {
             next();
         });
     } else {
-        res.sendStatus(StatusCodes.UNAUTHORIZED);
+        return res.sendStatus(StatusCodes.UNAUTHORIZED);
     }
 };
 
