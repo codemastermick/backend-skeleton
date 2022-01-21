@@ -19,6 +19,11 @@ const createAccessToken = (user: User) => {
   );
 };
 
+const featureError = new ApplicationException(
+  StatusCodes.NOT_IMPLEMENTED,
+  'Authentication is not enabled for this project. Please see src/configs/features.config.ts to enable a database.'
+);
+
 export default class AuthRouter extends CommonRoutesConfig {
   dbService: CommonDatabaseService;
   refreshTokens: string[];
@@ -33,10 +38,7 @@ export default class AuthRouter extends CommonRoutesConfig {
       .route('/register')
       .post(async (req: express.Request, res: express.Response) => {
         if (!authenticationEnabled) {
-          throw new ApplicationException(
-            StatusCodes.NOT_IMPLEMENTED,
-            'Authentication is not enabled for this project. Please see src/configs/features.config.ts to enable a database.'
-          );
+          throw featureError;
         }
 
         const username: string = req.body.username as string;
@@ -66,10 +68,7 @@ export default class AuthRouter extends CommonRoutesConfig {
       .route('/login')
       .post(async (req: express.Request, res: express.Response) => {
         if (!authenticationEnabled) {
-          throw new ApplicationException(
-            StatusCodes.NOT_IMPLEMENTED,
-            'Authentication is not enabled for this project. Please see src/configs/features.config.ts to enable a database.'
-          );
+          throw featureError;
         }
         res.contentType('application/json');
 
@@ -138,10 +137,7 @@ export default class AuthRouter extends CommonRoutesConfig {
       .route('/logout')
       .post((req: express.Request, res: express.Response) => {
         if (!authenticationEnabled) {
-          throw new ApplicationException(
-            StatusCodes.NOT_IMPLEMENTED,
-            'Authentication is not enabled for this project. Please see src/configs/features.config.ts to enable a database.'
-          );
+          throw featureError;
         }
 
         const token: string = req.body.token as string;
