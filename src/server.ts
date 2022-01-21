@@ -35,14 +35,16 @@ export default class Server {
   }
 
   start() {
-    this.app.listen(this.port, () => {
-      this.routes.forEach((route: CommonRoutesConfig) => {
-        this.logger.debug(`Routes configured for ${route.getName()}`);
+    if (require.main === module) {
+      this.app.listen(this.port, () => {
+        this.routes.forEach((route: CommonRoutesConfig) => {
+          this.logger.debug(`Routes configured for ${route.getName()}`);
+        });
+        this.logger.debug(
+          `Server started at http://localhost:${this.port} -- Press ctrl+c to stop`
+        );
       });
-      this.logger.debug(
-        `Server started at http://localhost:${this.port} -- Press ctrl+c to stop`
-      );
-    });
+    }
   }
 
   private configureRoutes() {
