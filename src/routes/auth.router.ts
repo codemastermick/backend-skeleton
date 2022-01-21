@@ -45,7 +45,6 @@ export default class AuthRouter extends CommonRoutesConfig {
         const password: string = req.body.password as string;
 
         const user: User = {
-          uid: 'generate-uid-here',
           username,
           password,
           displayName: username,
