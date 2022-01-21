@@ -1,22 +1,24 @@
-import request from "supertest";
-import express from "express";
-import PingRoutes from "../../src/routes/ping.router";
+import dotenv from 'dotenv';
+dotenv.config();
+import Server from '../../src/server'
+import supertest, { SuperTest, Test } from "supertest";
+import { STATUS_CODES } from 'http';
+import { StatusCodes } from 'http-status-codes';
 
-let server: express.Express;
-let router: express.Router;
+let request: SuperTest<Test>;
 
 beforeAll(async () => {
-    server = express();
-    router = express.Router();
-    router.use("/", new PingRoutes(server).configureRoutes())
+    request = supertest(new Server().app);
 })
 
 describe('GET /ping', () => {
-    it('should return the correct response', () => {
-        return request(server).get("/ping").then(res => {
-            expect(res.statusCode).toBe(200)
-            expect(res.type).toBe('application/json')
-            expect(res.body.message).toBe("pong")
+
+    it('should return the correct response', done => {
+        request.get("/ping").then(res => {
+            expect(res.statusCode).toBe(StatusCodes.OK);
+            expect(res.type).toBe('application/json');
+            expect(res.body.message).toBe("pong");
+            done();
         })
     })
 })
