@@ -53,13 +53,14 @@ export default class AuthRouter extends CommonRoutesConfig {
           avatarUrl: '',
           role: 'member'
         };
-        await this.dbService.create<User>(user, 'User', userSchema);
+        const id = await this.dbService.create<User>(user, 'User', userSchema);
 
         res.contentType('application/json');
         res.status(StatusCodes.CREATED);
         const accessToken = createAccessToken(user);
 
         res.json({
+          id,
           accessToken
         });
       });
