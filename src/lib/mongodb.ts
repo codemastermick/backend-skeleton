@@ -11,6 +11,8 @@ import {
 import Logger from './Logger';
 import CommonDatabaseService from './common.database.config';
 import { dbURL } from '@config/database.config';
+import ApplicationException from '../exceptions/ApplicationException';
+import { StatusCodes } from 'http-status-codes';
 
 export default class MongoDbService extends CommonDatabaseService {
   logger: Logger;
@@ -37,6 +39,13 @@ export default class MongoDbService extends CommonDatabaseService {
   ): Promise<string> {
     await this.connectToDatabase();
     const dataModel: Model<T> = model<T>(collection, schema);
+    await dataModel.validate((err) => {
+      this.logger.error(err.message);
+      throw new ApplicationException(
+        StatusCodes.BAD_REQUEST,
+        'Invalid creation parameters'
+      );
+    });
     const m = new dataModel(item);
     const results = await m.save();
     this.logger.debug('Saved item');
