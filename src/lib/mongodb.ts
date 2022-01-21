@@ -30,13 +30,18 @@ export default class MongoDbService extends CommonDatabaseService {
     this.logger.debug('Disconnected from MongoDB');
   }
 
-  async create<T>(item: T, collection: string, schema: Schema): Promise<void> {
+  async create<T>(
+    item: T,
+    collection: string,
+    schema: Schema
+  ): Promise<string> {
     await this.connectToDatabase();
     const dataModel: Model<T> = model<T>(collection, schema);
     const m = new dataModel(item);
-    await m.save();
+    const results = await m.save();
     this.logger.debug('Saved item');
     await this.disconnectFromDatabase();
+    return results._id as string;
   }
 
   async readAll<T>(collection: string, schema: Schema): Promise<T[]> {

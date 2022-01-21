@@ -17,7 +17,7 @@ export default abstract class CommonDatabaseService {
     item: T,
     collection: string,
     schema: Schema
-  ): Promise<void>;
+  ): Promise<string>;
   abstract readAll<T>(collection: string, schema: Schema): Promise<T[]>;
   abstract readOne<T>(
     collection: string,
